@@ -3,18 +3,31 @@
     <el-form
       class="login-form"
       ref="form"
+      :rules="rules"
       :model="form"
       label-width="80px"
       label-position="top"
     >
-      <el-form-item label="手机号">
-        <el-input v-model="form.name"></el-input>
+      <el-form-item>
+        <div class="top"><h2># INFINITE GLORY</h2></div>
+        <el-divider></el-divider>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="form.name"></el-input>
+      <el-form-item label="手机号" prop="phone">
+        <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input
+          type="password"
+          v-model="form.password"
+          placeholder="请输入密码"
+        ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button class="login-btn" type="primary" @click="onSubmit"
+        <el-button
+          :loading="isLoginLoading"
+          class="login-btn"
+          type="primary"
+          @click="onSubmit"
           >登录</el-button
         >
       </el-form-item>
@@ -23,25 +36,51 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import { login } from '@/services/user'
+import { Form } from 'element-ui'
 export default Vue.extend({
   name: 'LoginIndex',
   data() {
     return {
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        phone: '18201288771',
+        password: '111111'
+      },
+      isLoginLoading: false,
+      rules: {
+        phone: [
+          { required: true, message: '请输入手机号' },
+          {
+            pattern: /^1\d{10}$/,
+            message: '请输入正确的手机号'
+          }
+        ],
+        password: [
+          { required: true, message: '请输入密码' },
+          { min: 6, max: 18, message: '长度在6-18位' }
+        ]
       }
     }
   },
   methods: {
-    onSubmit() {
-      console.log('submit!')
+    async onSubmit() {
+      // 1: 表单验证
+      await (this.$refs.form as Form).validate(async (valid: boolean) => {
+        this.isLoginLoading = true
+        if (valid) {
+          // 2: 提交表单
+          const { data } = await login(this.form)
+          if (data.state !== 1) {
+            return this.$message.error(data.message)
+          } else {
+            this.$message.success('登录成功!')
+            this.$router.push({ name: 'home' })
+          }
+          this.isLoginLoading = false
+        } else {
+          this.isLoginLoading = false
+        }
+      })
     }
   }
 })
@@ -49,13 +88,17 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .login {
+  // background-image: linear-gradient(#ffd89b, #004e92);
+  background-image: linear-gradient(#004e92, #ffd89b);
+  // background-image: linear-gradient(#ffd89b, #19547b, #ffd89b, #bdc3c7);
+
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .login-form {
-    width: 300px;
+    width: 380px;
     background: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -63,6 +106,11 @@ export default Vue.extend({
 
   .login-btn {
     width: 100%;
+  }
+
+  .top {
+    text-align: center;
+    color: #004e92;
   }
 }
 </style>
