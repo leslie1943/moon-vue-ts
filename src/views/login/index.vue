@@ -44,7 +44,7 @@ export default Vue.extend({
     return {
       form: {
         phone: '18201288771',
-        password: '111111'
+        password: '111111',
       },
       isLoginLoading: false,
       rules: {
@@ -52,14 +52,14 @@ export default Vue.extend({
           { required: true, message: '请输入手机号' },
           {
             pattern: /^1\d{10}$/,
-            message: '请输入正确的手机号'
-          }
+            message: '请输入正确的手机号',
+          },
         ],
         password: [
           { required: true, message: '请输入密码' },
-          { min: 6, max: 18, message: '长度在6-18位' }
-        ]
-      }
+          { min: 6, max: 18, message: '长度在6-18位' },
+        ],
+      },
     }
   },
   methods: {
@@ -73,16 +73,20 @@ export default Vue.extend({
           if (data.state !== 1) {
             return this.$message.error(data.message)
           } else {
+            // 1.记录登录状态,状态需要能够全局访问
+            // 2.在访问需要登录的页面的时候判断有没有登录状态
             this.$message.success('登录成功!')
-            this.$router.push({ name: 'home' })
+            this.$store.commit('setUser', data.content)
+            this.$router.push((this.$route.query.redirect as string) || '/')
+            // this.$router.push({ name: 'home' })
           }
           this.isLoginLoading = false
         } else {
           this.isLoginLoading = false
         }
       })
-    }
-  }
+    },
+  },
 })
 </script>
 

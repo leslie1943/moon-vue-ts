@@ -20,7 +20,7 @@ import AppAside from './components/app-aisde.vue'
 import AppHeader from './components/app-header.vue'
 export default Vue.extend({
   name: 'LayoutIndex',
-  components: { AppAside, AppHeader }
+  components: { AppAside, AppHeader },
 })
 </script>
 <style lang="scss" scoped>

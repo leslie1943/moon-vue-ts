@@ -26,3 +26,11 @@ export const login = (data: User) => {
     data: qs.stringify(data)
   })
 }
+
+export const getUserInfo = () => {
+  // axios 默认发送的是 application/json格式的数据
+  return request({
+    url: '/front/user/getInfo',
+    method: 'GET'
+  })
+}
