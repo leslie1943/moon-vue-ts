@@ -92,6 +92,17 @@ const routes: Array<RouteConfig> = [
         meta: {
           requiresAuth: true
         }
+      },
+      {
+        path: '/menu/create',
+        name: 'menu-create',
+        component: () =>
+          import(
+            /* webpackChunkName: 'advert-space' */ '@/views/menu/create.vue'
+          ),
+        meta: {
+          requiresAuth: true
+        }
       }
     ]
   },

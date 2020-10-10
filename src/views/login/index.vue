@@ -44,7 +44,7 @@ export default Vue.extend({
     return {
       form: {
         phone: '18201288771',
-        password: '111111',
+        password: '111111'
       },
       isLoginLoading: false,
       rules: {
@@ -52,14 +52,14 @@ export default Vue.extend({
           { required: true, message: '请输入手机号' },
           {
             pattern: /^1\d{10}$/,
-            message: '请输入正确的手机号',
-          },
+            message: '请输入正确的手机号'
+          }
         ],
         password: [
           { required: true, message: '请输入密码' },
-          { min: 6, max: 18, message: '长度在6-18位' },
-        ],
-      },
+          { min: 6, max: 18, message: '长度在6-18位' }
+        ]
+      }
     }
   },
   methods: {
@@ -85,8 +85,8 @@ export default Vue.extend({
           this.isLoginLoading = false
         }
       })
-    },
-  },
+    }
+  }
 })
 </script>
 
