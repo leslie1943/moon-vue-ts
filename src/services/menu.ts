@@ -20,6 +20,7 @@ export const createOrUpdateMenu = (data: MenuParamsState) => {
   })
 }
 
+// 参数为联合类型
 export const getEditMenuInfo = (id: string | number = -1) => {
   return request({
     method: 'GET',

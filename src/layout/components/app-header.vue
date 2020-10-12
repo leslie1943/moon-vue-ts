@@ -32,35 +32,35 @@ export default Vue.extend({
   name: 'AppHeader',
   data() {
     return {
-      userInfo: {}
+      userInfo: {},
     }
   },
   created() {
-    this.loadUserInfo()
     this.loadUserInfo()
   },
   methods: {
     async loadUserInfo() {
       const { data } = await getUserInfo()
       this.userInfo = data.content
-      console.info('loadUserInfo')
     },
     onLogout() {
       this.$confirm('确认退出吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        // 清除登录状态
-        this.$store.commit('setUser', null)
-        // 跳转到登录页面
-        this.$router.push({ path: '/login' })
-        this.$message({ type: 'success', message: '退出成功!' })
-      }).catch(() => {
-        this.$message({ type: 'info', message: '已取消退出' })
+        type: 'warning',
       })
-    }
-  }
+        .then(() => {
+          // 清除登录状态
+          this.$store.commit('setUser', null)
+          // 跳转到登录页面
+          this.$router.push({ path: '/login' })
+          this.$message({ type: 'success', message: '退出成功!' })
+        })
+        .catch(() => {
+          this.$message({ type: 'info', message: '已取消退出' })
+        })
+    },
+  },
 })
 </script>
 
