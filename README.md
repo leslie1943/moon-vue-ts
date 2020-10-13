@@ -7,6 +7,11 @@
 - 权限管理 -> 菜单列表 - 完成
 - 权限管理 -> 角色列表 - (菜单分配和资源分配 未完成)
 
+<font color="#ff0000">说明一下,平时工作就是vue的业务,所以有些CRUD的业务就不写了.</font>
+<font color="#ff0000">把时间花在更有意义的事情上.</font>
+
+<img src="./work-materials/login.png">
+<img src="./work-materials/biz.png">
 ## Project setup
 
 ```
