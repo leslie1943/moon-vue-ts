@@ -12,6 +12,7 @@ const router = new VueRouter({
 // to: 要去哪里的路由信息
 // from: 从哪里来的路由信息
 router.beforeEach((to, from, next) => {
+  // debugger
   // to.matched 是是一个数组(匹配到的路由记录: 父路由和子路由)
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.state.user) {
