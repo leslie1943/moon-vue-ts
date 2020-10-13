@@ -34,3 +34,19 @@ export const getUserInfo = () => {
     method: 'GET'
   })
 }
+
+interface UserPagesSearch {
+  currentPage?: number
+  pageSize?: number
+  phone?: string
+  userId?: number
+  startCreateTime?: string
+  endCreateTime?: string
+}
+export const getUserPages = (data: UserPagesSearch) => {
+  return request({
+    url: '/boss/user/getUserPages',
+    method: 'POST',
+    data
+  })
+}

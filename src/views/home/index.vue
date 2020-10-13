@@ -3,7 +3,7 @@
     <div class="masthead">
       <div class="overlay"></div>
       <div class="container">
-        <div style="font-size: 84px; color: #fff">Welcome</div>
+        <div style="font-size: 84px; color: #fff">荣光无限</div>
       </div>
     </div>
   </div>

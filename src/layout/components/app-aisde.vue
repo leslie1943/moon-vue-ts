@@ -2,7 +2,7 @@
   <div class="aside">
     <el-menu
       router
-      default-active="/"
+      default-active=""
       class="el-menu-vertical-demo"
       @open="handleOpen"
       @close="handleClose"
@@ -19,7 +19,7 @@
       <template v-for="item in allMenuList">
         <!-- 有子菜单的 -->
         <template v-if="item.subMenuList && item.subMenuList.length > 0">
-          <el-submenu index="" :key="item.href">
+          <el-submenu :index="item.href" :key="item.href">
             <template slot="title">
               <i :class="'el-icon-' + item.icon"></i>
               <span slot="title">{{ item.name }}</span>
@@ -42,15 +42,6 @@
           <span slot="title">{{ item.name }}</span>
         </el-menu-item>
       </template>
-
-      <!-- <el-submenu v-for="item in allMenuList" :key="item.id" :index="item.href">
-        <template slot="title">
-          <i class="el-icon-setting"></i>
-          <span>{{ item.name }}</span>
-        </template>
-        <template v-if="item.subMenuList && item.subMenuList.length > 0">
-        </template>
-      </el-submenu> -->
     </el-menu>
   </div>
 </template>
